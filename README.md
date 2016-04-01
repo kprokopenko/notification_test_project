@@ -1,4 +1,4 @@
-Необходимые для запуска команды
+Необходимые для запуска команды:
 
 yii migrate --migrationPath=@yii/rbac/migrations
 yii rbac/init

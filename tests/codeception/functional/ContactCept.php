@@ -1,6 +1,7 @@
 <?php
 
 use tests\codeception\_pages\ContactPage;
+use tests\codeception\_pages\LoginPage;
 
 /* @var $scenario Codeception\Scenario */
 
@@ -8,6 +9,10 @@ $I = new FunctionalTester($scenario);
 $I->wantTo('ensure that contact works');
 
 $contactPage = ContactPage::openBy($I);
+
+$I->see('Login', 'h1');
+$loginPage = LoginPage::openBy($I);
+$loginPage->login('demo', 'demo');
 
 $I->see('Contact', 'h1');
 
