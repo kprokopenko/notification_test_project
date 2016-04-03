@@ -32,6 +32,14 @@ class NotificationEmailDriver extends Component implements NotificationDriverInt
 
     public function sendAll($subject, $body, $from)
     {
-        //TODO implement
+        $users = User::find()
+            ->select(['email']);
+
+        $messages = [];
+        foreach ($users->each() as $user) {
+            $messages[] = $this->composeMessage($user, $subject, $body, $from);
+        }
+
+        \Yii::$app->mailer->sendMultiple($messages);
     }
 }
