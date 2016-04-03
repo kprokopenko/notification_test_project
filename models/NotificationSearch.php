@@ -18,8 +18,8 @@ class NotificationSearch extends Notification
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'user_id'], 'integer'],
-            [['subject', 'body', 'from'], 'safe'],
+            ['user_id', 'required'],
+            ['user_id', 'integer'],
         ];
     }
 
@@ -50,11 +50,11 @@ class NotificationSearch extends Notification
             'sort'=> ['defaultOrder' => ['created_at' => SORT_DESC]],
         ]);
 
-        $this->load($params);
+        $this->load($params, '');
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+            $query->where('0=1');
+
             return $dataProvider;
         }
 
