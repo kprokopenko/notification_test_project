@@ -89,7 +89,12 @@ class NotificationComponent extends Component
 
         foreach ($templates->each() as $template) {
             /* @var $template NotificationTemplate */
-            \Yii::$app->notification->sendNotification($template->subject, $template->renderBody($templateAttributes));
+            \Yii::$app->notification->sendNotification(
+                $template->subject,
+                $template->renderBody($templateAttributes),
+                $template->to,
+                $template->from
+            );
         }
     }
 
@@ -98,11 +103,18 @@ class NotificationComponent extends Component
      * @param $subject string
      * @param $body string
      */
-    public function sendNotification($subject, $body)
+    public function sendNotification($subject, $body, $to, $from)
     {
         foreach ($this->_drivers as $driver) {
             /* @var $driver NotificationDriverInterface */
-            $driver->send($subject, $body);
+            if ($to === NotificationTemplate::TO_ALL) {
+                $driver->sendAll($subject, $body, $from);
+            } else {
+                $user = \Yii::$app->user->getIdentity();
+                if ($user instanceof User) {
+                    $driver->sendOne($user, $subject, $body, $from);
+                }
+            }
         }
     }
 }
