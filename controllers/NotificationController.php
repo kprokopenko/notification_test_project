@@ -34,7 +34,7 @@ class NotificationController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'review' => ['POST'],
                 ],
             ],
         ];
@@ -53,6 +53,15 @@ class NotificationController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionReview()
+    {
+        $model = $this->findModel(Yii::$app->request->post('id'));
+        if ($model) {
+            $model->reviewed = true;
+            $model->save(false, ['reviewed']);
+        }
     }
 
     /**

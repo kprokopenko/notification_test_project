@@ -15,6 +15,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $updated_at
  * @property integer $user_id
  * @property string $from
+ * @property boolean $reviewed
  *
  * @property User $user
  */
