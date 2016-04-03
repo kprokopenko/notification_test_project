@@ -8,12 +8,22 @@ class NotificationBrowserDriver extends Component implements NotificationDriverI
 {
     public function sendOne(User $to, $subject, $body, $from)
     {
-        \Yii::info('Sended to browser', __METHOD__);
-        // TODO: Implement send() method.
+        $notification = new Notification();
+        $notification->user_id = $to->id;
+        $notification->subject = $subject;
+        $notification->body = $body;
+        $notification->from = $from;
+        if (!$notification->save()) {
+            \Yii::error('Не удалось отправить уведомление через браузер', __METHOD__);
+            \Yii::error($notification->errors, __METHOD__);
+        }
     }
 
     public function sendAll($subject, $body, $from)
     {
-        // TODO: Implement sendAll() method.
+        //TODO сделать через batchInsert
+        foreach (User::find()->each() as $user) {
+            $this->sendOne($user, $subject, $body, $from);
+        }
     }
 }

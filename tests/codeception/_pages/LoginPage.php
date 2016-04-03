@@ -28,4 +28,10 @@ class LoginPage extends BasePage
         $page = self::openBy($tester);
         $page->login('admin', 'admin');
     }
+
+    public static function loginAsDemo($tester)
+    {
+        $page = self::openBy($tester);
+        $page->login('demo', 'demo');
+    }
 }

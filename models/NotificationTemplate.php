@@ -22,6 +22,11 @@ class NotificationTemplate extends \yii\db\ActiveRecord
     const TO_ALL = 0;
     const TO_CREATOR = 1;
 
+    private function render($text, $templateParameters)
+    {
+        return strtr($text, $templateParameters);
+    }
+
     /**
      * @inheritdoc
      */
@@ -131,7 +136,17 @@ class NotificationTemplate extends \yii\db\ActiveRecord
      */
     public function renderBody($templateParameters)
     {
-        return strtr($this->body, $templateParameters);
+        return $this->render($this->body, $templateParameters);
+    }
+
+    /**
+     * Подставляет переменные шаблонов (напр., {subject}) и возвращает готовый текст
+     * @param array $templateParameters
+     * @return string
+     */
+    public function renderSubject($templateParameters)
+    {
+        return $this->render($this->subject, $templateParameters);
     }
 
     public function attributeHints()

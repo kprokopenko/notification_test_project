@@ -3,17 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\NotificationTemplate;
-use app\models\NotificationTemplateSearch;
-use yii\filters\AccessControl;
+use app\models\Notification;
+use app\models\NotificationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * NotificationController implements the CRUD actions for NotificationTemplate model.
+ * NotificationController implements the CRUD actions for Notification model.
  */
-class NotificationTemplateController extends Controller
+class NotificationController extends Controller
 {
     /**
      * @inheritdoc
@@ -21,15 +20,6 @@ class NotificationTemplateController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['admin'],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -40,12 +30,12 @@ class NotificationTemplateController extends Controller
     }
 
     /**
-     * Lists all NotificationTemplate models.
+     * Lists all Notification models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new NotificationTemplateSearch();
+        $searchModel = new NotificationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -55,7 +45,7 @@ class NotificationTemplateController extends Controller
     }
 
     /**
-     * Displays a single NotificationTemplate model.
+     * Displays a single Notification model.
      * @param integer $id
      * @return mixed
      */
@@ -67,13 +57,13 @@ class NotificationTemplateController extends Controller
     }
 
     /**
-     * Creates a new NotificationTemplate model.
+     * Creates a new Notification model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new NotificationTemplate();
+        $model = new Notification();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -85,7 +75,7 @@ class NotificationTemplateController extends Controller
     }
 
     /**
-     * Updates an existing NotificationTemplate model.
+     * Updates an existing Notification model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -104,7 +94,7 @@ class NotificationTemplateController extends Controller
     }
 
     /**
-     * Deletes an existing NotificationTemplate model.
+     * Deletes an existing Notification model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -117,15 +107,15 @@ class NotificationTemplateController extends Controller
     }
 
     /**
-     * Finds the NotificationTemplate model based on its primary key value.
+     * Finds the Notification model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return NotificationTemplate the loaded model
+     * @return Notification the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = NotificationTemplate::findOne($id)) !== null) {
+        if (($model = Notification::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

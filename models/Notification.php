@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "notification".
@@ -27,14 +28,21 @@ class Notification extends \yii\db\ActiveRecord
         return 'notification';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['subject', 'body', 'created_at', 'updated_at', 'user_id', 'from'], 'required'],
-            [['created_at', 'updated_at', 'user_id'], 'integer'],
+            [['subject', 'body', 'user_id', 'from'], 'required'],
+            [['user_id'], 'integer'],
             [['subject', 'body', 'from'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];

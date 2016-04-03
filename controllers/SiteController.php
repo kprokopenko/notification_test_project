@@ -51,9 +51,9 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->can('crudNotice')) {
             return $this->redirect(['//notification-template']);
+        } else {
+            return $this->redirect(['//notification']);
         }
-
-        return $this->render('index');
     }
 
     public function actionLogin()

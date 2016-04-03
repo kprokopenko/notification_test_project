@@ -33,23 +33,26 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    $items = [['label' => 'Уведомления', 'url' => ['/notification/index']]];
+    if (Yii::$app->user->can('crudNotice')) {
+        $items[] = ['label' => 'Шаблоны уведомлений', 'url' => '/notification-template/index'];
+    }
+    $items[] = Yii::$app->user->isGuest ? (
+    ['label' => 'Войти', 'url' => ['/site/login']]
+    ) : (
+        '<li>'
+        . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+        . Html::submitButton(
+            'Выйти (' . Yii::$app->user->identity->username . ')',
+            ['class' => 'btn btn-link']
+        )
+        . Html::endForm()
+        . '</li>'
+    );
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Войти', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-                . Html::submitButton(
-                    'Выйти (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
+        'items' => $items,
     ]);
     NavBar::end();
     ?>

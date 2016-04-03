@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Notification;
+use app\models\NotificationTemplate;
 
 /**
- * NotificationSearch represents the model behind the search form about `app\models\Notification`.
+ * NotificationSearch represents the model behind the search form about `app\models\NotificationTemplate`.
  */
-class NotificationSearch extends Notification
+class NotificationTemplateSearch extends NotificationTemplate
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class NotificationSearch extends Notification
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'user_id'], 'integer'],
-            [['subject', 'body', 'from'], 'safe'],
+            [['id', 'event_code', 'from', 'to', 'type'], 'integer'],
+            [['title', 'subject', 'body'], 'safe'],
         ];
     }
 
@@ -41,13 +41,12 @@ class NotificationSearch extends Notification
      */
     public function search($params)
     {
-        $query = Notification::find();
+        $query = NotificationTemplate::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['created_at' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -61,14 +60,15 @@ class NotificationSearch extends Notification
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'user_id' => $this->user_id,
+            'event_code' => $this->event_code,
+            'from' => $this->from,
+            'to' => $this->to,
+            'type' => $this->type,
         ]);
 
-        $query->andFilterWhere(['like', 'subject', $this->subject])
-            ->andFilterWhere(['like', 'body', $this->body])
-            ->andFilterWhere(['like', 'from', $this->from]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'subject', $this->subject])
+            ->andFilterWhere(['like', 'body', $this->body]);
 
         return $dataProvider;
     }

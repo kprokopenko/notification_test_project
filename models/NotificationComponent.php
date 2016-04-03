@@ -90,7 +90,7 @@ class NotificationComponent extends Component
         foreach ($templates->each() as $template) {
             /* @var $template NotificationTemplate */
             \Yii::$app->notification->sendNotification(
-                $template->subject,
+                $template->renderSubject($templateAttributes),
                 $template->renderBody($templateAttributes),
                 $template->to,
                 $template->from
