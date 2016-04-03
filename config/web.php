@@ -5,7 +5,8 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'notification'],
+    'language' => 'ru-RU',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -41,14 +42,24 @@ $config = [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        'notification' => [
+            'class' => 'app\models\NotificationComponent',
+            'rules' => require(__DIR__ . '/events.php'),
+            'drivers' => [
+                'email' => [
+                    'class' => 'app\models\NotificationEmailDriver',
+                ],
+                'browser' => [
+                    'class' => 'app\models\NotificationBrowserDriver',
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];
