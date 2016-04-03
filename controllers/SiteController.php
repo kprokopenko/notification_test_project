@@ -50,7 +50,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         if (Yii::$app->user->can('crudNotice')) {
-            return $this->redirect(['//notification']);
+            return $this->redirect(['//notification-template']);
         }
 
         return $this->render('index');

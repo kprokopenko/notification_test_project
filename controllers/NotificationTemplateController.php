@@ -13,7 +13,7 @@ use yii\filters\VerbFilter;
 /**
  * NotificationController implements the CRUD actions for NotificationTemplate model.
  */
-class NotificationController extends Controller
+class NotificationTemplateController extends Controller
 {
     /**
      * @inheritdoc
