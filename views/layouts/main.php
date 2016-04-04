@@ -36,6 +36,7 @@ AppAsset::register($this);
     $items = [['label' => 'Уведомления', 'url' => ['/notification/index']]];
     if (Yii::$app->user->can('crudNotice')) {
         $items[] = ['label' => 'Шаблоны уведомлений', 'url' => '/notification-template/index'];
+        $items[] = ['label' => 'Статьи', 'url' => '/post/index'];
     }
     $items[] = Yii::$app->user->isGuest ? (
     ['label' => 'Войти', 'url' => ['/site/login']]

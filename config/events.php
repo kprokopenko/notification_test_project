@@ -24,4 +24,12 @@ return [
             'body',
         ],
     ],
+    'newPost' => [
+        'class' => 'app\models\Post',
+        'event' => 'afterInsert',
+        'templateAttributes' => [
+            'title',
+            'body',
+        ],
+    ]
 ];
