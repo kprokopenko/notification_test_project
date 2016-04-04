@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d478fcba9ae864908afd3992f6f64937",
-    "content-hash": "1cf65a178f1d134c554087469bf342b5",
+    "hash": "ead5ded6d87a77140453f353adc2c7bb",
+    "content-hash": "455fe7adb02bb4d5a61357df34b67d4d",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -313,6 +313,62 @@
             "time": "2015-08-05 01:03:42"
         },
         {
+            "name": "fxp/composer-asset-plugin",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/francoispluchino/composer-asset-plugin.git",
+                "reference": "daca454b94539a4e6d30937dfc6b817eceb03f28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/francoispluchino/composer-asset-plugin/zipball/daca454b94539a4e6d30937dfc6b817eceb03f28",
+                "reference": "daca454b94539a4e6d30937dfc6b817eceb03f28",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0@dev"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Fxp\\Composer\\AssetPlugin\\FxpAssetPlugin",
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fxp\\Composer\\AssetPlugin\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Pluchino",
+                    "email": "francois.pluchino@gmail.com"
+                }
+            ],
+            "description": "NPM/Bower Dependency Manager for Composer",
+            "homepage": "https://github.com/francoispluchino/composer-asset-plugin",
+            "keywords": [
+                "asset",
+                "bower",
+                "composer",
+                "dependency manager",
+                "nodejs",
+                "npm",
+                "package"
+            ],
+            "time": "2015-11-20 14:58:24"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "5.x-dev",
             "source": {
@@ -371,12 +427,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "bcc317666439a8ec1dc28874e0577b860b6dd6b3"
+                "reference": "d3fbd61f5f18017d167618394257199475a61414"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/bcc317666439a8ec1dc28874e0577b860b6dd6b3",
-                "reference": "bcc317666439a8ec1dc28874e0577b860b6dd6b3",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d3fbd61f5f18017d167618394257199475a61414",
+                "reference": "d3fbd61f5f18017d167618394257199475a61414",
                 "shasum": ""
             },
             "require": {
@@ -457,7 +513,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2016-03-30 14:53:41"
+            "time": "2016-04-04 04:21:33"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
